@@ -33,7 +33,7 @@ We followed a progressive experiment pipeline where each stage motivates the nex
 Tic-Tac-Toe is a solved game. MinMax represents the theoretical optimal strategy and sets the performance benchmark. Any learning agent should aim to at least avoid consistent losses against it.
 
 **Results:** 
-![MinMax vs Random - Win Rate](images/WP_MinMax_vs_RandomPlayer.png)
+![MinMax vs Random - Win Rate](plots/WOT_MinMax_vs_RandomPlayer.png)
 
 ### Experiment 1: Q-Learning Agent vs Random Player
 
@@ -49,7 +49,7 @@ Tic-Tac-Toe is a solved game. MinMax represents the theoretical optimal strategy
 The agent learns meaningful strategy and clearly outperforms a non-strategic opponent over time, confirming that Q-Learning is effective in this environment.
 
 **Results:** 
-![MinMax vs Random - Win Rate](images/WP_MinMax_vs_RandomPlayer.png)
+![MinMax vs Random - Win Rate](plots/WOT_RandomPlayer_vs_Agent.png)
 
 ### Experiment 2: Q-Learning Agent vs MinMax
 
@@ -64,7 +64,7 @@ The agent learns meaningful strategy and clearly outperforms a non-strategic opp
 Standard Q-Learning learns to avoid obvious mistakes but cannot discover optimal play without guidance. It survives occasionally but fails to plan ahead.
 
 **Results:**  
-![MinMax vs Random - Win Rate](images/WP_MinMax_vs_RandomPlayer.png)
+![MinMax vs Random - Win Rate](plots/WOT_MinMax_vs_Agent.png)
 
 ### Experiment 3: Reward-Shaped Agent vs MinMax
 
@@ -80,7 +80,7 @@ A small and targeted reward adjustment leads to a major strategic improvement.
 The agent learns strong defensive play and avoids losing entirely, reaching practical near-optimal performance.
 
 **Results:**  
-![MinMax vs Random - Win Rate](images/WP_MinMax_vs_RandomPlayer.png)
+![MinMax vs Random - Win Rate](plots/WOT_MinMax_vs_Agent_wMRF.png)
 
 ### Heatmaps: Board Preference Before vs After Reward Shaping
 
@@ -102,15 +102,17 @@ The only difference is the reward function.
 
 These heatmaps show that even a small reward tweak leads to **more stable, strategic play**.
 
-#### Visual Comparison (Before → After)
+#### Visual Comparison (Before vs After Reward Shaping)
 
-```
-![MinMax vs Random - Win Rate](images/WP_MinMax_vs_RandomPlayer.png)
-```
+<p align="center">
+  <img src="plots/heatMap_Before.png" alt="Before Reward Shaping" width="45%" />
+  &nbsp;&nbsp;&nbsp;
+  <img src="plots/heatMap_After.png" alt="After Reward Shaping" width="45%" />
+</p>
 
-```
-![MinMax vs Random - Win Rate](images/WP_MinMax_vs_RandomPlayer.png)
-```
+<p align="center">
+  <b>Left:</b> Before reward shaping &nbsp;&nbsp; | &nbsp;&nbsp; <b>Right:</b> After reward shaping
+</p>
 
 ## Files Included
 
