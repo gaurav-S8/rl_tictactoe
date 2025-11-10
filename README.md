@@ -114,6 +114,9 @@ These heatmaps show that even a small reward tweak leads to **more stable, strat
   <b>Left:</b> Before reward shaping &nbsp;&nbsp; | &nbsp;&nbsp; <b>Right:</b> After reward shaping
 </p>
 
+**Example Heatmap Interpretation (Before, State 2 — XXXX1XXXX):**
+In this state, the center cell (index 4) is already filled, so it has no Q-value and appears highlighted differently (pink). The remaining cells show the agent’s expected rewards for playing there; higher values indicate more promising moves. Here, the top-right and right-middle cells (indices 2 and 5) have the highest Q-values (~1.3 and ~1.1), meaning the agent considers them the best choices. Lower-valued squares (~0.7–0.9) reflect moves the agent expects to be weaker or less advantageous.
+
 ## Files Included
 
 - `RL-TicTacToe.ipynb` — main notebook with training, evaluation, and visualizations
