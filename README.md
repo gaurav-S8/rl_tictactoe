@@ -139,7 +139,7 @@ Open the notebook and run all cells:
 
 ## Summary of Results
 
-| Experiment | Opponent | Training Setup | Final Results | Key Learning |
+| Experiment | Match-up | Training Setup | Final Results | Key Learning |
 |-----------|---------|----------------|---------------|--------------|
 | Baseline | MinMax vs Random | No learning (reference) | **MinMax:** ~90% wins, ~10% draws, **0 losses** | Establishes the optimal benchmark |
 | Experiment 1 | Agent vs Random | Q-Learning, 200k games | **Agent:** ~69% wins, ~20% losses, ~10% draws | Agent learns winning patterns from scratch |
