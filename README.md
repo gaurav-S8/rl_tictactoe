@@ -1,6 +1,12 @@
 # Tic-Tac-Toe Reinforcement Learning with Q-Learning
 Q-Learning agent that learns Tic-Tac-Toe strategy, improves via reward shaping, and approaches optimal play.
 
+![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
+![RL](https://img.shields.io/badge/Reinforcement_Learning-Q_Learning-brightgreen.svg)
+![Game](https://img.shields.io/badge/Game-TicTacToe-orange.svg)
+![Status](https://img.shields.io/badge/Status-Completed-success.svg)
+![Notebook](https://img.shields.io/badge/Jupyter-Notebook-yellow.svg)
+
 This project implements a Q-Learning agent to play Tic-Tac-Toe and evaluates how different training setups influence learning, strategy, and performance.
 The focus is not only on playing the game, but on understanding what the agent learns, where it struggles, and how reward shaping improves decision-making.
 
@@ -151,3 +157,6 @@ Open the notebook and run all cells:
 ## Future Improvements
 - Move from tabular Q-learning → **Deep Q-Network (DQN)**  
 - Build interactive **UI to play against trained agent**
+
+### Keywords
+Q-Learning, Reinforcement Learning, Tic-Tac-Toe, MinMax Algorithm, Reward Shaping, Machine Learning, Python, NumPy, Game AI, Epsilon-Greedy, Tabular RL
