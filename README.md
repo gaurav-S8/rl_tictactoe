@@ -80,7 +80,7 @@ A small and targeted reward adjustment leads to a major strategic improvement.
 The agent learns strong defensive play and avoids losing entirely, reaching practical near-optimal performance.
 
 **Results:**  
-![MinMax vs Random - Win Rate](plots/WOT_MinMax_vs_Agent.png)
+![MinMax vs Random - Win Rate](plots/WOT_MinMax_vs_Agent_wMRF.png)
 
 ### Heatmaps: Board Preference Before vs After Reward Shaping
 
@@ -102,15 +102,17 @@ The only difference is the reward function.
 
 These heatmaps show that even a small reward tweak leads to **more stable, strategic play**.
 
-#### Visual Comparison (Before → After)
+#### Visual Comparison (Before vs After Reward Shaping)
 
-```
-![HeatMap - Before modifying Reward Function](plots/heatMap_Before.png)
-```
+<p align="center">
+  <img src="plots/heatMap_Before.png" alt="Before Reward Shaping" width="45%" />
+  &nbsp;&nbsp;&nbsp;
+  <img src="plots/heatMap_After.png" alt="After Reward Shaping" width="45%" />
+</p>
 
-```
-![HeatMap - After modifying Reward Function](plots/heatMap_After.png)
-```
+<p align="center">
+  <b>Left:</b> Before reward shaping &nbsp;&nbsp; | &nbsp;&nbsp; <b>Right:</b> After reward shaping
+</p>
 
 ## Files Included
 
