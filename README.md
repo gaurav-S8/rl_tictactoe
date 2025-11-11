@@ -75,6 +75,9 @@ Visualizing learned board preferences:
   <img src="plots/heatMap_After.png" width="45%" />
 </p>
 
+**Example Heatmap Interpretation (Before, State 2 — XXXX1XXXX):**
+In this state, the center cell (index 4) is already filled, so it has no Q-value and appears highlighted differently (pink). The remaining cells show the agent’s expected rewards for playing there; higher values indicate more promising moves. Here, the top-right and right-middle cells (indices 2 and 5) have the highest Q-values (~1.3 and ~1.1), meaning the agent considers them the best choices. Lower-valued squares (~0.7–0.9) reflect moves the agent expects to be weaker or less advantageous.
+
 > Reward shaping leads to strategic behavior — agent prefers center and avoids losing positions.
 
 
