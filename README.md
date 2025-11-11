@@ -39,41 +39,32 @@ Training episodes | 200,000
 
 ## Experiments & Results
 
-### Baseline — MinMax vs Random  
+**Baseline — MinMax vs Random**
 - MinMax never loses  
 - ~90% wins, ~10% draws  
 > Establishes optimal benchmark.
 
-![MinMax vs Random](plots/WOT_MinMax_vs_RandomPlayer.png)
-
-### Q-Learning Agent vs Random Player  
+**Q-Learning Agent vs Random Player**
 - Starts ~40% wins (high exploration)  
 - Improves steadily  
 - Final: ~69% wins, ~20% losses, ~10% draws  
 
 > Agent learns winning strategies successfully.
 
-![Agent vs Random Player](plots/WOT_RandomPlayer_vs_Agent.png)
-
-
-### Agent vs MinMax (No Reward Shaping)  
+**Agent vs MinMax (No Reward Shaping)**
 - 0 wins  
 - ~50% draws, ~50% losses  
 
 > Q-Learning avoids basic mistakes but **cannot beat optimal play**.
 
-![Agent vs MinMax](plots/WOT_MinMax_vs_Agent.png)
-
-### Reward-Shaped Agent vs MinMax  
+**Reward-Shaped Agent vs MinMax**
 Reward: + for taking center on first move.  
 
 **Result:**  
 - 0 losses across 200k games  
-- 100% draws  
+- 100% draws
 
 > Small reward tweak → **near-optimal strategy** (never loses).
-
-![Reward-Shaped Agent vs MinMax](plots/WOT_MinMax_vs_Agent_wMRF.png)
 
 ## Q-Value Heatmaps (Learning Insight)
 
