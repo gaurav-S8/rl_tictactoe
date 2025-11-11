@@ -59,9 +59,7 @@ Training episodes | 200,000
 
 **Reward-Shaped Agent vs MinMax**
 
-Reward: + for taking center on first move.  
-
-**Result:**  
+Modification: A small reward for taking center on first move. 
 - 0 losses across 200k games  
 - 100% draws
 
