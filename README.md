@@ -1,5 +1,7 @@
 # Tic-Tac-Toe Reinforcement Learning with Q-Learning
-Q-Learning agent that learns Tic-Tac-Toe strategy, improves via reward shaping, and approaches optimal play.
+
+A reinforcement learning agent trained to play Tic-Tac-Toe using Q-Learning.  
+The project explores how reward shaping, exploration decay, and opponent strategies influence learning and gameplay behavior.
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
 ![RL](https://img.shields.io/badge/Reinforcement_Learning-Q_Learning-brightgreen.svg)
@@ -7,156 +9,141 @@ Q-Learning agent that learns Tic-Tac-Toe strategy, improves via reward shaping, 
 ![Status](https://img.shields.io/badge/Status-Completed-success.svg)
 ![Notebook](https://img.shields.io/badge/Jupyter-Notebook-yellow.svg)
 
-This project implements a Q-Learning agent to play Tic-Tac-Toe and evaluates how different training setups influence learning, strategy, and performance.
-The focus is not only on playing the game, but on understanding what the agent learns, where it struggles, and how reward shaping improves decision-making.
+---
 
-## Project Goals
-- Train a Q-learning agent for Tic-Tac-Toe
-- Compare performance against different opponents
-- Visualize Q-values and board preferences
-- Examine RL limitations against an optimal (MinMax) opponent
-- Enhance learning through reward shaping
-- Build intuitive understanding of RL behavior in a simple, interpretable game
+## Project Overview
+This project trains a Q-Learning agent to master Tic-Tac-Toe and analyzes how reinforcement learning behaves in a simple, interpretable game setting.  
 
-## Reinforcement Learning Setup
-- **Algorithm:** Q-Learning
-- **Exploration:** ε-greedy with decay
-- **State Representation:** 3×3 Tic-Tac-Toe board (tabular)
-- **Actions:** Valid cell placements (0–8)
-- **Episodes:** 200,000 training games
+We systematically examine:
+
+- Learning vs randomness
+- Learning vs perfect play (MinMax)
+- Impact of **reward shaping**
+- Q-value heatmaps to understand agent intuition
+
+The focus is **not just winning**, but understanding *how the agent learns strategy*.
+
+---
+
+## Objectives
+- Train a Q-Learning agent for Tic-Tac-Toe  
+- Compare performance against random and MinMax opponents  
+- Visualize learning curves and Q-values  
+- Study exploration-exploitation trade-offs  
+- Demonstrate reward shaping impact  
+
+---
+
+## RL Setup
+| Component | Description |
+|---|---|
+Algorithm | Q-Learning  
+Policy | ε-greedy with decay  
+State | 3×3 board (tabular)  
+Actions | Valid moves (0-8)  
+Training episodes | 200,000  
+
+---
 
 ## Experiments & Results
-We followed a progressive experiment pipeline where each stage motivates the next.
 
-### Baseline: MinMax vs Random Player
-**Goal:** Establish a benchmark for optimal play.  
-**Setup:** MinMax agent plays against a pure random player.
-**Outcome:**  
+### 🎯 Baseline — MinMax vs Random  
 - MinMax never loses  
-- ~90% wins, ~10% draws, **0 losses**
+- ~90% wins, ~10% draws  
+> Establishes optimal benchmark.
 
-**Takeaway:**
-Tic-Tac-Toe is a solved game. MinMax represents the theoretical optimal strategy and sets the performance benchmark. Any learning agent should aim to at least avoid consistent losses against it.
+📈 `plots/WOT_MinMax_vs_RandomPlayer.png`
 
-**Results:** 
-![MinMax vs Random - Win Rate](plots/WOT_MinMax_vs_RandomPlayer.png)
+---
 
-### Experiment 1: Q-Learning Agent vs Random Player
+### 🧠 Q-Learning Agent vs Random Player  
+- Starts ~40% wins (high exploration)  
+- Improves steadily  
+- Final: ~69% wins, ~20% losses, ~10% draws  
 
-**Goal:** Test whether the RL agent can learn to consistently outperform a random opponent.  
-**Setup:** Train agent vs random player for 200,000 games.  
+> Agent learns winning strategies successfully.
 
-**Outcome:**  
-- Starts near ~40% win rate due to high exploration (ε = 1.0)  
-- Gradually improves as ε decays and learning stabilizes 
-- Achieves ~69% wins, ~20% losses, and ~10% draws after training.
+📈 `plots/WOT_RandomPlayer_vs_Agent.png`
 
-**Takeaway:**  
-The agent learns meaningful strategy and clearly outperforms a non-strategic opponent over time, confirming that Q-Learning is effective in this environment.
+---
 
-**Results:** 
-![MinMax vs Random - Win Rate](plots/WOT_RandomPlayer_vs_Agent.png)
-
-### Experiment 2: Q-Learning Agent vs MinMax
-
-**Goal:** Evaluate agent against perfect play.  
-**Setup:** Same trained agent now faces MinMax.  
-**Outcome:**  
-- **0 wins**
+### 🆚 Agent vs MinMax (No Reward Shaping)  
+- 0 wins  
 - ~50% draws, ~50% losses  
-- Flat learning curve, agent cannot improve further
 
-**Takeaway:**  
-Standard Q-Learning learns to avoid obvious mistakes but cannot discover optimal play without guidance. It survives occasionally but fails to plan ahead.
+> Q-Learning avoids basic mistakes but **cannot beat optimal play**.
 
-**Results:**  
-![MinMax vs Random - Win Rate](plots/WOT_MinMax_vs_Agent.png)
+📈 `plots/WOT_MinMax_vs_Agent.png`
 
-### Experiment 3: Reward-Shaped Agent vs MinMax
+---
 
-**Goal:** Improve strategic learning using reward shaping.  
-**Modification:** Added bonus reward for taking the center square on the first move.  
-**Outcome:**  
-- **0 losses across 200k games**
+### 🎯 Reward-Shaped Agent vs MinMax  
+Reward: + for taking center on first move.  
+
+**Result:**  
+- 0 losses across 200k games  
 - 100% draws  
-- Center square becomes consistently prioritized in Q-values
 
-**Takeaway:**  
-A small and targeted reward adjustment leads to a major strategic improvement.  
-The agent learns strong defensive play and avoids losing entirely, reaching practical near-optimal performance.
+> Small reward tweak → **near-optimal strategy** (never loses).
 
-**Results:**  
-![MinMax vs Random - Win Rate](plots/WOT_MinMax_vs_Agent_wMRF.png)
+📈 `plots/WOT_MinMax_vs_Agent_wMRF.png`
 
-### Heatmaps: Board Preference Before vs After Reward Shaping
+---
 
-To analyze what the agent actually learned, we visualize Q-value heatmaps for key board states.
+## Q-Value Heatmaps (Learning Insight)
 
-The agent was trained against a random player in both cases.  
-The only difference is the reward function.
+Visualizing learned board preferences:
 
-**Before reward shaping**
-- Values are low and scattered
-- No strong preference for center or optimal early moves
-- Agent learns to win but without clear strategic focus
-
-**After reward shaping (center bonus)**
-- Strong, consistent preference for center square
-- Much higher Q-values overall (stronger confidence)
-- Moves become structured rather than random
-- Behavior converges toward never losing against MinMax
-
-These heatmaps show that even a small reward tweak leads to **more stable, strategic play**.
-
-#### Visual Comparison (Before vs After Reward Shaping)
 
 <p align="center">
-  <img src="plots/heatMap_Before.png" alt="Before Reward Shaping" width="45%" />
-  &nbsp;&nbsp;&nbsp;
-  <img src="plots/heatMap_After.png" alt="After Reward Shaping" width="45%" />
+  <img src="plots/heatMap_Before.png" width="45%" />
+  &nbsp;&nbsp;
+  <img src="plots/heatMap_After.png" width="45%" />
 </p>
 
-<p align="center">
-  <b>Left:</b> Before reward shaping &nbsp;&nbsp; | &nbsp;&nbsp; <b>Right:</b> After reward shaping
-</p>
+> Reward shaping leads to strategic behavior — agent prefers center and avoids losing positions.
 
-**Example Heatmap Interpretation (Before, State 2 — XXXX1XXXX):**
-In this state, the center cell (index 4) is already filled, so it has no Q-value and appears highlighted differently (pink). The remaining cells show the agent’s expected rewards for playing there; higher values indicate more promising moves. Here, the top-right and right-middle cells (indices 2 and 5) have the highest Q-values (~1.3 and ~1.1), meaning the agent considers them the best choices. Lower-valued squares (~0.7–0.9) reflect moves the agent expects to be weaker or less advantageous.
-
-## Files Included
-
-- `RL-TicTacToe.ipynb` — main notebook with training, evaluation, and visualizations
-- `plots/` — contains plots and heatmaps used in README
-- `README.md`
-
-## How to Run
-
-Open the notebook and run all cells:
-
-1. Launch Jupyter / VS Code / Colab
-2. Open `RL-TicTacToe.ipynb`
-3. Run cells sequentially to train and evaluate the agent
+---
 
 ## Summary of Results
 
-| Experiment | Match-up | Training Setup | Final Results | Key Learning |
-|-----------|---------|----------------|---------------|--------------|
-| Baseline | MinMax vs Random | No learning (reference) | **MinMax:** ~90% wins, ~10% draws, **0 losses** | Establishes the optimal benchmark |
-| Experiment 1 | Agent vs Random | Q-Learning, 200k games | **Agent:** ~69% wins, ~20% losses, ~10% draws | Agent learns winning patterns from scratch |
-| Experiment 2 | Agent vs MinMax | Agent trained vs Random, then tested vs MinMax | **Agent:** 0 wins, ~50% losses, ~50% draws | Q-Learning alone cannot beat optimal play; limited long-term planning |
-| Experiment 3 | Reward-Shaped Agent vs MinMax | Same training + bonus for first-move center | **Agent:** 0 losses, **100% draws** | Reward shaping teaches strategic behavior; agent never loses |
+| Experiment | Opponent | Result | Key Insight |
+|---|---|---|---|
+Baseline | MinMax vs Random | MinMax wins ~90% | Optimal benchmark |
+Agent vs Random | Q-Learning | ~69% wins | Learns winning patterns |
+Agent vs MinMax | Q-Learning | 0 wins, ~50% losses | Can't plan long-term |
+Reward-Shaped Agent vs MinMax | Q-Learning + bonus | **0 losses** | Reward shaping → strategy |
 
+---
 
 ## What I Learned
-- How Q-learning updates state-action values  
-- Importance of ε-decay for exploration vs exploitation  
-- Reward shaping can dramatically accelerate strategy learning  
-- Tabular RL struggles with long-term planning vs perfect play  
-- Visualizing Q-tables reveals agent intuition  
+- How Q-Learning updates state-action values  
+- Importance of ε-decay in exploration/exploitation  
+- Reward shaping accelerates strategic learning  
+- Tabular RL struggles vs optimal long-term planning  
+- Heatmaps/Q-tables reveal agent decision patterns  
+
+---
+
+## How to Run
+```bash
+jupyter notebook RL-TicTacToe.ipynb
+```
+
+### Required libraries (if needed):
+```bash
+pip install numpy matplotlib
+```
+
+## Repository Structure
+<pre>
+📦 RL-TicTacToe
+├── RL-TicTacToe.ipynb
+├── plots/
+│   ├── *.png  # performance charts & heatmaps
+└── README.md
+</pre>
 
 ## Future Improvements
-- Move from tabular Q-learning → **Deep Q-Network (DQN)**  
-- Build interactive **UI to play against trained agent**
-
-### Keywords
-Q-Learning, Reinforcement Learning, Tic-Tac-Toe, MinMax Algorithm, Reward Shaping, Machine Learning, Python, NumPy, Game AI, Epsilon-Greedy, Tabular RL
+- Extend to Deep Q-Networks (DQN)
+- Interactive UI to play against the agent
