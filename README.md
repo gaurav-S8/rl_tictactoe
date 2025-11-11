@@ -58,6 +58,7 @@ Training episodes | 200,000
 > Q-Learning avoids basic mistakes but **cannot beat optimal play**.
 
 **Reward-Shaped Agent vs MinMax**
+
 Reward: + for taking center on first move.  
 
 **Result:**  
